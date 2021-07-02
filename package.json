@@ -1,0 +1,29 @@
+{
+  "name": "cga",
+  "version": "1.0.0",
+  "description": "通用脚手架，可自己配置template",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "cga": "./bin/cga.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arsize/cga.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/arsize/cga/issues"
+  },
+  "homepage": "https://github.com/arsize/cga#readme",
+  "dependencies": {
+    "commander": "^8.0.0",
+    "download-git-repo": "^3.0.2",
+    "inquirer": "^8.1.1"
+  },
+  "devDependencies": {}
+}
