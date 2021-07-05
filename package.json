@@ -26,6 +26,7 @@
     "commander": "^8.0.0",
     "download": "^6.2.5",
     "download-github-repo": "^0.1.4",
+    "format-json": "^1.0.3",
     "iconv-lite": "^0.6.3",
     "inquirer": "^8.1.1",
     "jsonfile": "^6.1.0",

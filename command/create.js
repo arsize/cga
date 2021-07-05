@@ -1,16 +1,28 @@
 const inquirer = require('inquirer')
 const userList = require("../prompt/inquirerList")
-const download = require('../lib/download')
+const download = require('../lib/download').download
 const ora = require('ora');
 const chalk = require('chalk')
 const reName = require("../lib/rename")
 const shell = require('../lib/shell')
+const isDirEmpty = require("../utils").isDirEmpty
 const spinner = ora('Installing CLI plugins. This might take a while2...')
 
-function create(name) {
+async function create() {
+    let isEmpty = await isDirEmpty("./")
+    if (!isEmpty) {
+        console.log("👻 请确认当前文件夹为空")
+        return
+    }
+
     inquirer.prompt(userList).then(answer => {
-        spinner.start()
         let tempName = handleAnswer(answer)
+        if (!tempName) {
+            // 暂未开放的模板选项
+            spinner.stop()
+            return
+        }
+        spinner.start()
         download(tempName, "./", function (err) {
             spinner.stop()
             if (err) {
@@ -18,8 +30,8 @@ function create(name) {
                 return
             }
             // 后续处理
-            Promise.all(task(name)).then(res => {
-                console.log(chalk.green("Success"))
+            Promise.all(task()).then(res => {
+                console.log(chalk.green("Success 🌱"))
                 console.log(chalk.green("enjoy! :)"))
             })
 
@@ -43,7 +55,8 @@ function handleAnswer(answer) {
             templateName += `_${answer.modulesCustom}`
         } else {
             // TODO:自定义搭配
-            templateName += `_${answer.modulesCustom}`
+            console.log("👻 暂未开放，请稍后")
+            return false
         }
 
     } else if (answer.projectType == 'react') {
@@ -52,9 +65,13 @@ function handleAnswer(answer) {
             templateName += answer.projectType + `_cra_` + answer.modulesCustom
         } else {
             // TODO:自定义搭配
-            templateName += answer.projectType + `_cra_` + answer.modulesCustom
+            console.log("👻 暂未开放，请稍后")
+            return false
         }
 
+    } else {
+        console.log("👻 暂未开放，请稍后")
+        return false
     }
 
     return templateName
@@ -65,11 +82,9 @@ function handleAnswer(answer) {
  * @param {string} name 
  * @returns 
  */
-function task(name) {
+function task() {
     let temp = [
-        reName('package.json', name),
-        reName('package-lock.json', name),
-        shell('npm i')
+        shell('npm i'),
     ]
     return temp
 }

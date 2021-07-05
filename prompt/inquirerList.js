@@ -14,6 +14,26 @@ const promptList = [
                 name: "react",
                 value: "react",
                 description: "一个react项目",
+            },
+            {
+                name: "angular",
+                value: "angular",
+                description: "一个angular项目",
+            },
+            {
+                name: "flutter",
+                value: "flutter",
+                description: "一个flutter项目",
+            },
+            {
+                name: "react native",
+                value: "react native",
+                description: "react native",
+            },
+            {
+                name: "nextjs",
+                value: "nextjs",
+                description: "nextjs",
             }
         ]
     },
