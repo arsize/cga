@@ -11,6 +11,7 @@ function create(name) {
     inquirer.prompt(userList).then(answer => {
         spinner.start()
         let tempName = handleAnswer(answer)
+        console.log('tempName', tempName)
         download(tempName, "./", function (err) {
             spinner.stop()
             if (err) {
@@ -41,9 +42,19 @@ function handleAnswer(answer) {
         if (answer.modulesCustom == 'default') {
             // vue2 + vue-cli3
             templateName += `_${answer.modulesCustom}`
+        } else {
+            // TODO:自定义搭配
+            templateName += `_${answer.modulesCustom}`
         }
 
     } else if (answer.projectType == 'react') {
+        if (answer.modulesCustom == 'default') {
+            // react + create-react-app
+            templateName += answer.projectType + `_cra_` + answer.modulesCustom
+        } else {
+            // TODO:自定义搭配
+            templateName += answer.projectType + `_cra_` + answer.modulesCustom
+        }
 
     }
 

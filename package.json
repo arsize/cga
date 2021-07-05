@@ -1,6 +1,6 @@
 {
-  "name": "cga",
-  "version": "1.0.0",
+  "name": "@arsize/cga",
+  "version": "1.0.1",
   "description": "通用脚手架，可自己配置template",
   "main": "index.js",
   "scripts": {
@@ -14,8 +14,8 @@
     "url": "git+https://github.com/arsize/cga.git"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "arsize",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/arsize/cga/issues"
   },
