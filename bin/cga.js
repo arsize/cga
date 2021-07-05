@@ -14,8 +14,17 @@ program
 program.on('--help', function () {
     console.log('  Examples:');
     console.log('');
-    console.log('    this is an example');
+    console.log('  cga create <project_name>');
     console.log('');
+    console.log('  cga init -t <url>')
+    console.log('');
+    console.log('  cga add -t')
+    console.log('');
+    console.log('  cga list')
+    console.log('');
+    console.log('  cga rm <temp_name>')
+    console.log('');
+    console.log('  cga init -lt <temp_name>')
 });
 
 program.parse()

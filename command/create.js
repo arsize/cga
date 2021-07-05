@@ -11,7 +11,6 @@ function create(name) {
     inquirer.prompt(userList).then(answer => {
         spinner.start()
         let tempName = handleAnswer(answer)
-        console.log('tempName', tempName)
         download(tempName, "./", function (err) {
             spinner.stop()
             if (err) {
