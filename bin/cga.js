@@ -10,7 +10,7 @@ const init = require("../command/init")
 const use = require("../command/use")
 
 program
-    .version('1.0.2', '-v,--version')
+    .version('1.0.3', '-v,--version')
     .command('create')
     .description('create a new project')
     .action(() => {
