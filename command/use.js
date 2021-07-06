@@ -1,5 +1,6 @@
 const downloadCustom = require('../lib/download').downloadCustom
 const downLocal = require('../lib/download').downLocal
+const downDir = require('../lib/download').downDir
 const ora = require('ora');
 const path = require("path")
 const fs = require("fs")
@@ -60,8 +61,12 @@ function selectTemp(temp_name) {
 function checkDownType(url) {
     if (url.includes('http:') || url.includes('https:')) {
         return downloadCustom
-    } else {
+    } else if (url.includes('.zip')) {
+        // zip需要解压 然后move
         return downLocal
+    } else {
+        //copy
+        return downDir
     }
 
 }

@@ -9,6 +9,11 @@
       "name": "test",
       "url": "D:\\cache\\vue.zip",
       "des": "this is a vue project"
+    },
+    {
+      "name": "vue",
+      "url": "D:\\cache",
+      "des": "目录"
     }
   ]
 }

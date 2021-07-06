@@ -17,7 +17,7 @@ program
         create()
     })
 program
-    .command('list')
+    .command('ls')
     .description('list local template cache')
     .action(() => {
         listTm()
@@ -60,7 +60,7 @@ program.on('--help', function () {
     console.log('  cga init <url>')
     console.log('  cga use <temp_name>')
     console.log('  cga add')
-    console.log('  cga list')
+    console.log('  cga ls')
     console.log('  cga rm <temp_name>')
     console.log('  cga clean')
 
