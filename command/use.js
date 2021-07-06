@@ -1,4 +1,5 @@
 const downloadCustom = require('../lib/download').downloadCustom
+const downLocal = require('../lib/download').downLocal
 const ora = require('ora');
 const path = require("path")
 const fs = require("fs")
@@ -12,21 +13,28 @@ async function use(temp_name) {
         console.log("👻 请确认当前文件夹为空")
         return
     }
-    spinner.start()
     let url = selectTemp(temp_name)
-    if (!url) return
-    downloadCustom(url, "./", function (err) {
+    if (!url) {
+        console.log('👻 请先添加此模板')
+        spinner.stop()
+        return
+    }
+    spinner.start()
+    checkDownType(url)(url, "./", function (err) {
         spinner.stop()
         if (err) {
             console.error(err)
             return
         }
-        // 后续处理
-        Promise.all(task()).then(res => {
-            console.log(chalk.green("Success 🌱"))
-            console.log(chalk.green("enjoy! :)"))
-        })
 
+        delDir(url).then(res => {
+            shell('npm i').then(success => {
+                console.log(chalk.green("Success 🌱"))
+                console.log(chalk.green("enjoy! :)"))
+            })
+        }, rej => {
+            console.log("error :(")
+        })
     })
 }
 function selectTemp(temp_name) {
@@ -36,8 +44,9 @@ function selectTemp(temp_name) {
     if (exists) {
         let url = ""
         filelist.template.map(item => {
-            item.name = temp_name
-            url = item.url
+            if (item.name == temp_name) {
+                url = item.url
+            }
         })
         return url
     } else {
@@ -48,16 +57,27 @@ function selectTemp(temp_name) {
 
 }
 
-/**
- * 任务流程
- * @param {string} name 
- * @returns 
- */
-function task() {
-    let temp = [
-        shell('npm i'),
-    ]
-    return temp
+function checkDownType(url) {
+    if (url.includes('http:') || url.includes('https:')) {
+        return downloadCustom
+    } else {
+        return downLocal
+    }
+
+}
+
+// 删除多余的文件
+function delDir(url) {
+    return new Promise((resovle, reject) => {
+        if (checkDownType(url) == 'downLocal') {
+            let basename = path.basename(url, path.extname(url))
+            fs.rmdirSync(path.resolve(__dirname, `../lib/${basename}`), { recursive: true })
+            resovle()
+        } else {
+            resovle()
+        }
+
+    })
 }
 
 module.exports = use
