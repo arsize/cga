@@ -6,8 +6,8 @@ const wrightFileList = require('../utils').wrightFileList
 
 function add() {
     inquirer.prompt(addList).then(answer => {
-        let exists = fs.existsSync("../tempfile.json")
-        let filelist = require("../tempfile.json")
+        let exists = fs.existsSync(path.resolve(__dirname,"../tempfile.json"))
+        let filelist = require(path.resolve(__dirname,"../tempfile.json"))
         if (exists) {
             filelist.template.push({
                 name: answer.templateName,

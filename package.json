@@ -1,6 +1,6 @@
 {
   "name": "@arsize/cga",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "通用脚手架，可自己配置template",
   "main": "index.js",
   "scripts": {

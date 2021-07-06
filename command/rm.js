@@ -2,8 +2,8 @@ const path = require('path')
 const fs = require("fs")
 const wrightFileList = require('../utils').wrightFileList
 function rm(name) {
-    let exists = fs.existsSync("../tempfile.json")
-    let filelist = require("../tempfile.json")
+    let exists = fs.existsSync(path.resolve(__dirname,"../tempfile.json"))
+    let filelist = require(path.resolve(__dirname,"../tempfile.json"))
     if (exists) {
         let temp = []
         filelist.template.map(item => {
