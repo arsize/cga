@@ -41,7 +41,7 @@ cga init http://xxxxxxx/file.zip #通过远程zip包初始化项目
 ```
 #### 方式三(本地管理)
 ```
-PS C:\Users\testproj> cga list                        
+PS C:\Users\testproj> cga ls                        
 Template List(Local):
 (1) [vue2_default]: http://arsizes.com/template/zip/vue2_default.zip
     Describe：vue2+vue-cli4;default项目
